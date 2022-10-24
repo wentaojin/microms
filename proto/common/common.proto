@@ -1,0 +1,56 @@
+// 版本声明，使用Protocol Buffers v3版本
+syntax = "proto3";
+// 默认包名
+package common;
+// 编译生成的 .pb.go 文件存放地址
+option go_package = "github.com/wentaojin/microms/proto/common";
+
+// 消息结构
+// 数据库连接通用消息结构
+message OracleDBEngine {
+   string OracleArch  = 1;
+   string Username = 2;
+   string Password = 3;
+   string Host = 4;
+   uint32 Port = 5;
+   string ServiceName = 6;
+   string LibDir = 7;
+   string ConnectParams = 8;
+   repeated string SessionParams = 9;
+   string SchemaName = 10;
+   repeated string IncludeTables = 11;
+   repeated string ExcludeTables = 12;
+}
+
+message MySQLDBEngine {
+    string DBType = 1;
+    string Username = 2;
+    string Password = 3;
+    string Host = 4;
+    uint32 Port = 5;
+    string ConnectParams = 8;
+    string SchemaName = 10;
+    string TableOption = 11;
+}
+
+message SQLiteDBEngine {
+    string DBPath = 1;
+}
+
+// 响应通用消息结构
+message ResponseMsg {
+    RespCode RespCode = 1;
+    string RespMsg = 2;
+}
+
+enum RespCode {
+    respSuccess = 0;
+    respFailed = 1;
+    respUnknown = 2;
+}
+
+// 任务通用消息结构
+message TaskInfo {
+    string TaskUUID = 1;
+    string TaskName = 2;
+}

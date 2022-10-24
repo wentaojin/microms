@@ -1,0 +1,2 @@
+$ protoc --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative:. ./proto/common/common.proto      
+$ protoc --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative:. ./proto/reverse/reverse.proto 

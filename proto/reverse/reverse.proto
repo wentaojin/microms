@@ -1,0 +1,43 @@
+// 版本声明，使用Protocol Buffers v3版本
+syntax = "proto3";
+// 默认包名
+package reverse;
+// 编译生成的 .pb.go 文件存放地址
+option go_package = "github.com/wentaojin/microms/proto/reverse";
+
+// proto 包导入
+import "proto/common/common.proto";
+
+// 定义服务
+service Reverse {
+    rpc CreateTask (ReqCreateTask) returns (RespCreateTask){}
+    rpc ReportState (ReqReportState) returns (RespReportState){}
+}
+
+// 任务创建
+// 请求消息
+message ReqCreateTask{
+    string TaskUUID = 1;
+    string TaskName = 2;
+    common.OracleDBEngine OracleDBEngine = 3;
+    common.MySQLDBEngine MySQLDBEngine = 4;
+    common.SQLiteDBEngine SQLiteDBEngine = 5;
+}
+
+// 响应消息
+message RespCreateTask{
+    common.TaskInfo TaskInfo = 1;
+    common.ResponseMsg RespMsg = 2;
+}
+
+// 任务进程
+// 请求消息
+message ReqReportState{
+    common.TaskInfo TaskInfo = 1;
+}
+
+// 响应消息
+message RespReportState{
+    common.TaskInfo TaskInfo = 1;
+    string ReportStateMsg = 2;
+}
